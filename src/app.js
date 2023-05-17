@@ -63,10 +63,14 @@ app.use(cookieParser());
 const productsRoute = require('./routes/ProductsRoute');
 const commentsRoute = require('./routes/CommentsRoute');
 const usersRoute = require('./routes/UsersRoute');
+const cartsRoute = require('./routes/CartsRoute');
+const ordersRoute = require('./routes/OrdersRoute');
 
 app.use('/', usersRoute);
 app.use('/', productsRoute);
 app.use('/', commentsRoute);
+app.use('/', cartsRoute);
+app.use('/', ordersRoute);
 
 
 server.listen(5000, () => {

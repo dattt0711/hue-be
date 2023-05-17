@@ -3,11 +3,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const { ROLE } = require('../utils/constants');
 const { common } = require('./Common');
-<<<<<<< HEAD
 const ObjectId = mongoose.Types.ObjectId;
 
-=======
->>>>>>> 490bf8a227a7e82d1ddc39f750872a6157ade5b9
 const usersBase = {
     username: {
         type: String, trim: true,

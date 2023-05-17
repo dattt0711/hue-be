@@ -6,14 +6,18 @@ const { common } = require('./Common');
 const ObjectId = mongoose.Types.ObjectId;
 const mongoosePaginate = require('mongoose-paginate-v2');
 const ordersBase = {
-    userObjId: {
-        type: ObjectId, trim: true, ref: 'users',
+
+    country: {
+        type: String, trim: true,
     },
-    address: {
+    city: {
+        type: String, trim: true,
+    },
+    district: {
         type: String, trim: true,
     },
     phoneNumber: {
-        type: Number, trim: true,
+        type: String, trim: true,
     },
     receiverName: {
         type: String, trim: true,
