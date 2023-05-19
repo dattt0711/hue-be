@@ -11,6 +11,7 @@ router.post('/carts/addToCart', async (req, res) => {
         const { userObjId, productObjIds } = req.body;
         let updatedCart = [];
         const conditions = {
+            isDeleted: 'No',
             userObjId: convertToObjectId(userObjId),
         }
         const existedCart = await CartsModel.findOne(conditions);
@@ -51,6 +52,8 @@ router.get('/carts/list', async (req, res) => {
     try {
         const { userObjId } = req.query;
         const conditions = {
+            isDeleted: 'No',
+
             userObjId: convertToObjectId(userObjId),
         }
         const result = await CartsModel.findOne(conditions).populate('productObjIds.productObjId');

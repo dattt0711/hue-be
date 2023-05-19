@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const OrdersModel = require('../models/Orders');
+const CartsModel = require('../models/Carts');
 const {
     responseSuccess, responseError,
     regExpSearch, convertToObjectId,
@@ -20,6 +21,12 @@ router.post('/orders/payment', async (req, res) => {
         set.totalPrice = totalPrice;
         set.productObjIds = productObjIds.map((item) => ({ ...item, productObjId: convertToObjectId(item.productObjId) }))
         const result = await OrdersModel.create(set);
+        const conditionCart = {};
+        conditionCart.isDeleted = 'No';
+        conditionCart.userObjId = convertToObjectId(userObjId);
+        const setCart = {};
+        setCart.isDeleted = 'Yes';
+        await CartsModel.findOneAndUpdate(conditionCart, setCart, { new: true });
         if (result) {
             return res.json(responseSuccess("Order successfully!", result));
         }
