@@ -9,7 +9,8 @@ router.post('/users/login', async (req, res) => {
     try {
         const { username, password } = req.body;
         const conditions = {
-            isDeleted: "No"
+            isDeleted: "No",
+            username: username,
         };
         const result = await UsersModel.findOne(conditions);
         if (!result) return res.json(responseError("Username or password is wrong", {}));
