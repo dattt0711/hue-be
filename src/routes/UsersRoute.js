@@ -46,11 +46,11 @@ router.get('/products/info', async (req, res) => {
         const conditions = {
             _id: convertToObjectId(userObjId),
         }
-        const result = await ProductsModel.findOne(conditions);
+        const result = await UsersModel.findOne(conditions);
         if (result) {
-            return res.json(responseSuccess("Find a product successfully!", result));
+            return res.json(responseSuccess("Find a user successfully!", result));
         }
-        return res.json(responseError("Find a product fail", {}))
+        return res.json(responseError("Find a user fail", {}))
     } catch (err) {
         console.log(err, 'err')
         return res.json(responseError("Something went wrong!", err))
