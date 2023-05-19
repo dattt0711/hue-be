@@ -40,6 +40,21 @@ router.post('/users/register', async (req, res) => {
     }
 })
 
-
+router.get('/products/info', async (req, res) => {
+    try {
+        const { userObjId } = req.query;
+        const conditions = {
+            _id: convertToObjectId(userObjId),
+        }
+        const result = await ProductsModel.findOne(conditions);
+        if (result) {
+            return res.json(responseSuccess("Find a product successfully!", result));
+        }
+        return res.json(responseError("Find a product fail", {}))
+    } catch (err) {
+        console.log(err, 'err')
+        return res.json(responseError("Something went wrong!", err))
+    }
+})
 
 module.exports = router;

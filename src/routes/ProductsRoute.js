@@ -3,7 +3,7 @@ const router = express.Router();
 const ProductsModel = require('../models/Products');
 const {
     responseSuccess, responseError,
-    regExpSearch,
+    regExpSearch, convertToObjectId
 } = require('../utils/shared');
 router.get('/products/list', async (req, res) => {
     try {
@@ -78,7 +78,7 @@ router.get('/products/info/:productObjId', async (req, res) => {
     try {
         const { productObjId } = req.params;
         const conditions = {
-            _id: productObjId,
+            _id: convertToObjectId(productObjId),
         }
         const result = await ProductsModel.findOne(conditions);
         if (result) {
@@ -121,7 +121,7 @@ router.put('/products/edit', async (req, res) => {
             price, image, details, subImage1, subImage2, subImage3 } = req.body;
         const set = {};
         const conditions = {
-            _id: productObjId,
+            _id: convertToObjectId(productObjId),
         }
         if (productName) {
             set.productName = productName;
@@ -165,7 +165,7 @@ router.delete('/products/delete', async (req, res) => {
     try {
         const { productObjId } = req.body;
         const conditions = {
-            _id: productObjId,
+            _id: convertToObjectId(productObjId),
         }
         const set = {
             isDeleted: "Yes",

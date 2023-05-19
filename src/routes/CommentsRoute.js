@@ -31,7 +31,7 @@ router.post('/comments/create', async (req, res) => {
         set.comment = comment;
         set.brief = brief;
         set.rating = rating;
-        set.productObjId = productObjId;
+        set.productObjId = convertToObjectId(productObjId);
         const result = await CommentsModel.create(set);
         if (result) {
             return res.json(responseSuccess("Create a comment successfully!", result));
